@@ -9,10 +9,10 @@ from html_parsing_functions import find_all_forms, get_form_details
 def main():
     # Data used to fill up the form
     inputs = {
-        "eaa$TextboxName": "YOUR_NAME",
-        "eaa$TextboxEmail": "YOUR_EMAIL",
-        "eaa$el0$custom54801": "YOUR_PERSONAL_VALUE",
-        "eaa$el0$custom54388": "YOUR_PHONE_NUMBER"
+        "eaa$TextboxName": "[your name]",
+        "eaa$TextboxEmail": "[your email]",
+        "eaa$el0$custom54801": "[last 4 digits of your student ID]",
+        "eaa$el0$custom54388": "[your ph number]"
     }
 
     # Read the booking timings I'd like
