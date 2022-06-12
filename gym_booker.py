@@ -42,7 +42,9 @@ def main():
 
     # Find the number of slot booking links to go through to find the relevant ones
     nslotsday = 6
-    nslots = max(5 - dt.date.weekday(dt.date.today()) * nslotsday, 5*nslotsday)
+    nslots = 5 - dt.date.weekday(dt.date.today()) * nslotsday
+    if nslots <= 0:
+        nslots = 5 * nslotsday
 
     # Go through the relevant slot timings to book the desired ones
     driver = webdriver.Edge()
