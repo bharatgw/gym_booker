@@ -40,23 +40,30 @@ def main():
     soup = BeautifulSoup(gym_url.text, "html.parser")
     slots = soup.find_all("item")
 
-    # Find the number of slot booking links to go through to find the relevant ones
-    nslotsday = 6
-    nslots = 5 - dt.date.weekday(dt.date.today()) * nslotsday
-    if nslots <= 0:
-        nslots = 5 * nslotsday
+    # Find the date for next Friday
+    today = dt.date.today()
+    friday = 5 - today.isoweekday()
+    if friday <= 0:
+        friday = today + dt.timedelta(7)
+    else:
+        friday = today + dt.timedelta(friday)
 
     # Go through the relevant slot timings to book the desired ones
     driver = webdriver.Edge()
 
-    for slot in slots[0:nslots]:
+    # Initialize dates and timing for while loop
+    date = today.strftime("%B %#d %Y")
+    friday = friday.strftime("%B %#d %Y")
+    timing = "8"
+    today = today.strftime("%B %#d %Y")
+
+    for slot in slots:
         des = slot.description.text.split(",")
         day = des[0]
         timing = des[-1].split('-')[0].strip()
-        if timings_dict[day] == timing:
+        date = (des[1] + des[2]).strip()
+        if timings_dict[day] == timing and date != today:
             url = slot.find("x-trumba:ealink").text
-            print(url)
-
             # Go to the relevant link for the slot and book it
             driver.get(url)
 
@@ -68,8 +75,7 @@ def main():
             for input_tag in form_details["inputs"]:
                 if input_tag["type"] == "text" and re.match("eaa.*", input_tag["name"]):
                     data[input_tag["name"]] = inputs[input_tag["name"].split("_")[0]] # One of the tag names changes on every page
-                
-                # Ignore hidden tags
+    
             
             # Fill out the form fields
             for name, value in data.items():
@@ -78,6 +84,9 @@ def main():
 
             submit = driver.find_element(By.ID, value = "eaa_ButtonOK")
             submit.click()
+
+        if date == friday and timing == "6":
+            break
 
     # Quit the webdriver
     driver.quit()
