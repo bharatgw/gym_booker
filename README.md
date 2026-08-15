@@ -12,10 +12,10 @@ The booking site, form fields, browser-driver requirements, and university polic
 
 | Path | Purpose |
 | --- | --- |
-| `gym_booker.py` | Reads preferred times, discovers booking links, and controls the browser. |
-| `html_parsing_functions.py` | Extracts and inspects HTML form fields. |
-| `timings.txt` | Historical example of preferred booking times. |
-| `requirements.txt` | Original pinned Python environment. |
+| [`gym_booker.py`](./gym_booker.py) | Reads preferred times, discovers booking links, and controls the browser. |
+| [`html_parsing_functions.py`](./html_parsing_functions.py) | Extracts and inspects HTML form fields. |
+| [`timings.txt`](./timings.txt) | Historical example of preferred booking times. |
+| [`requirements.txt`](./requirements.txt) | Original pinned Python environment. |
 
 ## Privacy and authorization
 
@@ -25,7 +25,7 @@ Automated booking should only be attempted where the service owner explicitly pe
 
 ## Compatibility
 
-The original project used Microsoft Edge, Selenium 4.2, and Python packages pinned in `requirements.txt`. Platform-specific date formatting and current browser-driver behavior may differ. No support or compatibility guarantees are provided.
+The original project used Microsoft Edge, Selenium 4.2, and Python packages pinned in [`requirements.txt`](./requirements.txt). Platform-specific date formatting and current browser-driver behavior may differ. No support or compatibility guarantees are provided.
 
 ## License and reuse
 
